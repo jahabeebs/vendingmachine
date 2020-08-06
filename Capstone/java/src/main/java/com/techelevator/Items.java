@@ -8,24 +8,28 @@ import java.util.Scanner;
 
 public class Items {
 
+	
 	private static File vendItems = new File("vendingmachine.csv");
 	public static void main(String[] args) throws FileNotFoundException {
 		Items t = new Items();	
 		boolean fileExists = vendItems.exists();
-		System.out.println(fileExists);
+
 	
-	Map <String, String[]> vendMap = new HashMap<>();
-	String [] itemsArray = {};
+	Map <String, String> vendMap = new HashMap<>();
+	String [] itemsArray = new String[4];
 	
 	try (Scanner vendReader = new Scanner(vendItems)) {
 		while (vendReader.hasNextLine()) {
 		String vendLine = vendReader.nextLine();
-		//System.out.println(vendLine);
-		itemsArray = vendLine.split("|");
-		vendMap.put(itemsArray[0], itemsArray);
+		String tempVendLine = "";
+		if (vendLine.contains("|")) {
+			tempVendLine = vendLine.replace("|", ":");
+		}
+		itemsArray = tempVendLine.split(":");
+		vendMap.put(itemsArray[0], vendLine);
 		}
 	} 
-	System.out.println(vendMap);
+	System.out.println(vendMap.get("A1"));
 	
 }
 }
