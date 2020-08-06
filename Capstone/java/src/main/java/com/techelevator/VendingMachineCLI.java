@@ -47,10 +47,9 @@ public class VendingMachineCLI {
 	}
 
 	private void displayVendingMachineItems() {
-		String vendingMachineItemChoice = "";
-		while (!vendingMachineItemChoice.contentEquals("Back")) {
-			vendingMachineItemChoice = (String) menu.getChoiceFromOptions(VENDING_MACHINE_ITEMS);
-			//Read user input and match it to an item on VENDING_MACHINE_ITEMS
+		String vendingMachineItemMenu = "";
+		while (!vendingMachineItemMenu.contentEquals("Back")) {
+			vendingMachineItemMenu = (String) menu.getChoiceFromOptions(VENDING_MACHINE_ITEMS);
 		}
 	}
 
@@ -58,11 +57,19 @@ public class VendingMachineCLI {
 		String purchaseMenuOption = "";
 		while (!purchaseMenuOption.contentEquals("Back")) {
 			purchaseMenuOption = (String) menu.getChoiceFromOptions(PURCHASE_MENU);
-			if (purchaseMenuOption.equals("Feed Money")) {
+			if (purchaseMenuOption.contentEquals("Feed Money")) {
 				processMoneyFeed();
 			}
 			else if (purchaseMenuOption.equals("Select Product")) {
 				displayVendingMachineItems();
+				//getItem()...should be in Item class?
+				/*	public void getItem()
+				 *  	match product code (not item number) selected to item in vendMap
+				 *  		if doesn't exist return customer to purchase menu
+				 *  	ensure sufficient funds for item
+				 *  	dispense item and print item name, cost, money remaining
+				 *  	print crunch/munch/glug/chew
+				 */		
 				//Get user input and match it to an item on VENDING_MACHINE_ITEMS
 			}
 		}
