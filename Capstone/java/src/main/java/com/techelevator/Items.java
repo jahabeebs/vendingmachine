@@ -21,7 +21,11 @@ public class Items {
 	
 	private static File vendItems = new File("vendingmachine.csv");
 	public static Map<String, String> vendMap = new TreeMap<>();
-
+	public static Map<String, BigDecimal> vendMapPrice = new TreeMap<>();
+	public static Map<String, String> vendMapName = new TreeMap<>();
+	public static Map<String, Integer> vendMapStock = new TreeMap<>();
+	
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		//Items t = new Items("Potato Crisps", new BigDecimal("3.05"));
 		//Chips chip = new Chips(Chips.a1name, Chips.a1Price);
@@ -32,6 +36,10 @@ public class Items {
 				String vendLine = vendReader.nextLine();
 				itemsArray = vendLine.split("\\|");
 				vendMap.put(itemsArray[0], vendLine);
+				vendMapPrice.put(itemsArray[0], new BigDecimal(itemsArray[2]));
+				vendMapName.put(itemsArray[0], itemsArray[1]);
+				vendMapStock.put(itemsArray[0], 5);
+				
 				System.out.println(vendLine);
 			}
 
