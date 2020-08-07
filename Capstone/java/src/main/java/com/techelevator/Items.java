@@ -40,10 +40,10 @@ public class Items {
 				vendMapName.put(itemsArray[0], itemsArray[1]);
 				vendMapStock.put(itemsArray[0], 5);
 				
-				System.out.println(vendLine);
+				//System.out.println(vendLine);
 			}
 
-System.out.println(Chips.a1Info);
+System.out.println(vendMap.get("A1"));
 
 		}
 	}
