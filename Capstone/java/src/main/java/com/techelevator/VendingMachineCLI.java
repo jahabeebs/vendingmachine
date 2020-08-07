@@ -16,7 +16,6 @@ public class VendingMachineCLI {
 	private static final String[] PURCHASE_MENU = {"Feed Money", "Select Product", "Back"};
 	private static final String[] MONEY_MENU = {"$1 Bill", "$2 Bill", "$5 Bill", "Back"};
 	private static List <String> vendingMachineItemMenu = new ArrayList <String>();
-	private static String [] vendingMachineItemMenuArray = new String [1];
 	private static final String[] BACK_BUTTON = {"Back"};
 
 	private Menu menu;
@@ -74,17 +73,20 @@ public class VendingMachineCLI {
 				processMoneyFeed();
 			}
 			else if (purchaseMenuOption.equals("Select Product")) {	
-				System.out.println("Enter the product code: ");
-			//	System.out.println(Items.vendMap.get());
 				Set<String> vendMapKeys = Items.vendMap.keySet();
-				System.out.println(vendMapKeys);
 				for (String key : vendMapKeys) {
 					System.out.println(Items.vendMap.get(key));
 				}
-					}
+				Scanner userInput = new Scanner(System.in);
+				String itemCode = userInput.nextLine();
+				Money.buyItem(itemCode);
+				String choice = (String) menu.getChoiceFromOptions(BACK_BUTTON);
+//				if (choice.equals(BACK_BUTTON)) {
+//					processPurchaseMenuOptions();
+//				}
 				}
-			}
-				
+		}
+	}
 				
 				
 				
@@ -101,10 +103,19 @@ public class VendingMachineCLI {
 
 	private void processMoneyFeed() {
 		String feedOptions = "";
-		while (!feedOptions.contentEquals("Back"))
-		feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
-		
+		while (!feedOptions.contentEquals("Back")) {
+			feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
+			//Scanner userInput = new Scanner(System.in);
+			//String moneyCode = userInput.nextLine();
+			System.out.println(feedOptions);
+			Money.feedMoney(feedOptions);
+		}
 	}
+//		Scanner userInput = new Scanner(System.in);
+//		String money = userInput.nextLine();
+//		Money.feedMoney(money);
+//		userInput.close();
+		
 
 	public static void main(String[] args) throws FileNotFoundException {
 		Menu menu = new Menu(System.in, System.out);

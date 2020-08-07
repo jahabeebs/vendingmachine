@@ -9,15 +9,18 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Money {
+
 	static BigDecimal balance = new BigDecimal(0.00).setScale(2);
 	private static int quarters;
 	private static int dimes;
 	private static int nickels;
 	private static double balanceD;
+	private static BigDecimal pastBalance = balance;
 	
 	
 	public static void feedMoney (String feed) throws FileNotFoundException {
-		BigDecimal pastBalance = balance;
+	
+	
 		if (feed.equals("$1 Bill")) {
 			balance = balance.add(new BigDecimal (1.00));
 		}
@@ -58,7 +61,9 @@ public class Money {
 		}
 	}
 	
+
 	public static void buyItem (String itemCode) throws FileNotFoundException {
+
 		//If the item code doesn't match a key to the vendMap, then print CODE INVALID
 		if (!Items.vendMap.containsKey(itemCode)) {
 			System.out.println("CODE INVALID");
