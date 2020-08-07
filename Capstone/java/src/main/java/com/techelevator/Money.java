@@ -9,27 +9,30 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Money {
-	BigDecimal balance = new BigDecimal(0.00).setScale(2);
-	private int quarters;
-	private int dimes;
-	private int nickels;
-	private double balanceD;
+	static BigDecimal balance = new BigDecimal(0.00).setScale(2);
+	private static int quarters;
+	private static int dimes;
+	private static int nickels;
+	private static double balanceD;
 	
 	
-	public void feedMoney (int feed) {
-		if (feed == 1) {
+	public static void feedMoney (String feed) throws FileNotFoundException {
+		BigDecimal pastBalance = balance;
+		if (feed.equals("$1 Bill")) {
 			balance = balance.add(new BigDecimal (1.00));
 		}
-		else if (feed == 2) {
+		else if (feed.equals("$2 Bill")) {
 			balance = balance.add(new BigDecimal (2.00));
 		}
-		else if (feed == 5) {
+		else if (feed.equals("$5 Bill")) {
 			balance = balance.add(new BigDecimal (5.00));
 		}
+		writeLog("FEED MONEY", pastBalance, balance);
 		System.out.println("BALANCE: " + balance);
 	}
 	
-	public void makeChange(BigDecimal balance) {
+	public static void makeChange(BigDecimal balance) throws FileNotFoundException {
+		BigDecimal balanceWas = balance;
 		balanceD = (balance.doubleValue())*100;
 		quarters = (int) (balanceD/25);
 		balanceD = balanceD - (quarters*25);
@@ -37,13 +40,14 @@ public class Money {
 		balanceD = balanceD - (dimes*10);
 		nickels = (int) (balanceD/5);
 		balance = balance.multiply(new BigDecimal(0.00));
+		writeLog("GIVE CHANGE", balanceWas, balance);
 		
 		System.out.println("CHANGE: "+ quarters + " quarters " + dimes + " dimes " + nickels + " nickels.");
 	}
 	
 	
 	//01/01/2016 12:00:00 PM FEED MONEY: $5.00 $5.00
-	public void writeLog (String transaction, BigDecimal was, BigDecimal currentBalance) throws FileNotFoundException {
+	public static void writeLog (String transaction, BigDecimal was, BigDecimal currentBalance) throws FileNotFoundException {
 		LocalDateTime dateTime = LocalDateTime.now();
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss a");
 		String formattedDate = dateTime.format(myFormatObj);
@@ -54,7 +58,7 @@ public class Money {
 		}
 	}
 	
-	public void buyItem (String itemCode) {
+	public static void buyItem (String itemCode) throws FileNotFoundException {
 		//If the item code doesn't match a key to the vendMap, then print CODE INVALID
 		if (!Items.vendMap.containsKey(itemCode)) {
 			System.out.println("CODE INVALID");
@@ -72,10 +76,24 @@ public class Money {
 			//IF balance is GREATER THAN OR EQUAL to price, then
 			else if (balance.compareTo(Items.vendMapPrice.get(itemCode))==1 || (balance.compareTo(Items.vendMapPrice.get(itemCode))==0)) {
 				//Balance gets updated, balance - price
+				BigDecimal wasBalance = balance;
 				balance = balance.subtract(Items.vendMapPrice.get(itemCode));
 				//Stock of item reduces by 1
 				Items.vendMapStock.put(itemCode, Items.vendMapStock.get(itemCode)-1);
-				
+				//Updates the log with item name, initial balance, and current balance
+				writeLog(Items.vendMapName.get(itemCode), wasBalance, balance);
+					if (Items.vendMapType.get(itemCode).equals("Chip")) {
+						Chips.getMessage();
+					}
+					else if (Items.vendMapType.get(itemCode).equals("Candy")) {
+						Candy.getMessage();
+					}
+					else if (Items.vendMapType.get(itemCode).equals("Drink")) {
+						Drink.getMessage();
+					}
+					else {
+						Gum.getMessage();
+					}
 			}
 		}
 	}
