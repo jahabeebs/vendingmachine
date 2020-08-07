@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import com.techelevator.view.Menu;
 
@@ -15,6 +16,7 @@ public class VendingMachineCLI {
 	private static final String[] PURCHASE_MENU = {"Feed Money", "Select Product", "Back"};
 	private static final String[] MONEY_MENU = {"$1 Bill", "$2 Bill", "$5 Bill", "Back"};
 	private static List <String> vendingMachineItemMenu = new ArrayList <String>();
+	private static String [] vendingMachineItemMenuArray = new String [1];
 	private static final String[] BACK_BUTTON = {"Back"};
 
 	private Menu menu;
@@ -24,6 +26,7 @@ public class VendingMachineCLI {
 	}
 
 	public void run() throws FileNotFoundException {
+		Items.readFiles();
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
@@ -46,6 +49,10 @@ public class VendingMachineCLI {
 				System.out.println(s);
 			}
 		}
+		String choice = (String) menu.getChoiceFromOptions(BACK_BUTTON);
+		if (choice.equals(BACK_BUTTON)) {
+			run();
+		}
 	}
 
 		
@@ -58,14 +65,29 @@ public class VendingMachineCLI {
 //	}
 
 
-	private void processPurchaseMenuOptions() {
+	private void processPurchaseMenuOptions() throws FileNotFoundException {
 		String purchaseMenuOption = "";
+		String productSelection = "";
 		while (!purchaseMenuOption.contentEquals("Back")) {
 			purchaseMenuOption = (String) menu.getChoiceFromOptions(PURCHASE_MENU);
 			if (purchaseMenuOption.contentEquals("Feed Money")) {
 				processMoneyFeed();
 			}
-			else if (purchaseMenuOption.equals("Select Product")) {
+			else if (purchaseMenuOption.equals("Select Product")) {	
+				System.out.println("Enter the product code: ");
+			//	System.out.println(Items.vendMap.get());
+				Set<String> vendMapKeys = Items.vendMap.keySet();
+				System.out.println(vendMapKeys);
+				for (String key : vendMapKeys) {
+					System.out.println(Items.vendMap.get(key));
+				}
+					}
+				}
+			}
+				
+				
+				
+				
 				//displayVendingMachineItems();
 				//getItem()...should be in Item class?
 				/*	public void getItem()
@@ -76,9 +98,6 @@ public class VendingMachineCLI {
 				 *  	print crunch/munch/glug/chew
 				 */		
 				//Get user input and match it to an item on VENDING_MACHINE_ITEMS
-			}
-		}
-	}
 
 	private void processMoneyFeed() {
 		String feedOptions = "";

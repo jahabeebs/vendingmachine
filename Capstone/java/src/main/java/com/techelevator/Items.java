@@ -24,13 +24,10 @@ public class Items {
 	public static Map<String, BigDecimal> vendMapPrice = new TreeMap<>();
 	public static Map<String, String> vendMapName = new TreeMap<>();
 	public static Map<String, Integer> vendMapStock = new TreeMap<>();
+	public static String[] itemsArray = new String[4];
 	
-	
-	public static void main(String[] args) throws FileNotFoundException {
-		//Items t = new Items("Potato Crisps", new BigDecimal("3.05"));
-		//Chips chip = new Chips(Chips.a1name, Chips.a1Price);
-		//chip.getName();
-		String[] itemsArray = new String[4]; //I wonder why it works with 1+ too
+	public static void readFiles() throws FileNotFoundException {
+		//Items t = new Items();
 		try (Scanner vendReader = new Scanner(vendItems)) {
 			while (vendReader.hasNextLine()) {
 				String vendLine = vendReader.nextLine();
@@ -42,12 +39,16 @@ public class Items {
 				
 				System.out.println(vendLine);
 			}
-
-System.out.println(Chips.a1Info);
-
-		}
+		} 
 	}
 }
+
+
+//System.out.println(Chips.a1Info);
+//
+//		}
+//	}
+//}
 //	}
 //	public String returnKeyValueInfo() {
 //		vendMapInfo = vendMap.get("A1");
