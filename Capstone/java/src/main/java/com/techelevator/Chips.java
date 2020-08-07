@@ -38,7 +38,7 @@ public class Chips extends Items {
 //		super(name, price);
 //	}
 	
-	public String getMessage() {
+	public static String getMessage() {
 		return "Crunch Crunch, Yum!";
 	}
 	
