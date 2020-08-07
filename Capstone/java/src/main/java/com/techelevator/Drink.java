@@ -33,7 +33,7 @@ public class Drink extends Items{
 	static int c4Inventory = new Integer(5);
 	
 
-	public String getMessage() {
+	public static String getMessage() {
 		return "Glug Glug, Yum!";
 	}
 	

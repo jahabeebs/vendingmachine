@@ -31,7 +31,7 @@ public class Candy extends Items {
 	static BigDecimal b4Price = new BigDecimal(b4Array[2]);
 	static int b4Inventory = new Integer(5);
 	
-	public String getMessage() {
+	public static String getMessage() {
 		return "Munch Munch, Yum!";
 	}
 	

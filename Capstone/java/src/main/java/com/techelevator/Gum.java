@@ -31,7 +31,7 @@ public class Gum extends Items {
 	static BigDecimal d4Price = new BigDecimal(d4Array[2]);
 	static int d4Inventory = new Integer(5);
 	
-	public String getMessage() {
+	public static String getMessage() {
 		return "Chew Chew, Yum!";
 	}
 	
