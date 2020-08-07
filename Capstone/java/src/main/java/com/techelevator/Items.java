@@ -32,8 +32,8 @@ public class Items {
 				String vendLine = vendReader.nextLine();
 				itemsArray = vendLine.split("\\|");
 				vendMap.put(itemsArray[0], vendLine);
+				System.out.println(vendLine);
 			}
-System.out.println(Chips.a1Inventory);
 		}
 	}
 }
