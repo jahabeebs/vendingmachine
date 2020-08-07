@@ -10,8 +10,32 @@ public class Chips extends Items {
 	private String name;
 	private BigDecimal price;
 	
+	static String a1Info = vendMap.get("A1");
+	static String [] a1Array = a1Info.split("\\|");
+	static String a1name = a1Array[1];
+	static BigDecimal a1Price = new BigDecimal(a1Array[2]);
+	
+	static String a2Info = vendMap.get("A2");
+	static String [] a2Array = a2Info.split("\\|");
+	static String a2name = a2Array[1];
+	static BigDecimal a2Price = new BigDecimal(a2Array[2]);
+	
+	static String a3Info = vendMap.get("A3");
+	static String [] a3Array = a3Info.split("\\|");
+	static String a3name = a3Array[1];
+	static BigDecimal a3Price = new BigDecimal(a3Array[2]);
+	
+	static String a4Info = vendMap.get("A4");
+	static String [] a4Array = a4Info.split("\\|");
+	static String a4name = a4Array[1];
+	static BigDecimal a4Price = new BigDecimal(a4Array[2]);
+	
 	public Chips(String name, BigDecimal price) {
 		super(name, price);
+	}
+	
+	public String getMessage() {
+		return "Crunch Crunch, Yum!";
 	}
 	
 	public int getInventory() {
@@ -27,27 +51,13 @@ public class Chips extends Items {
 	}
 
 	public String setInfoFromMap() {
-		String str = getInfoFromMap();
-		String [] chipsInfoArray = str.split("//|");
-		name = chipsInfoArray[1];
+		
 		return name;
 	}
 	
-//	public String [] arraySplitter() {
-//		String str = getInfoFromMap();
-//		String [] chipsInfoArray = str.split("//|");
-//		System.out.println(chipsInfoArray[1]);
-//		return null;
-//	}
 	
-	public String getInfoFromMap() {
-		String mapInfo = vendMap.get("A1");
-		return mapInfo;
+	public void getInfoFromMap() {
 		
-//		String [] chipArray = chipInfo.split("|");
-//		String name = chipArray[1];
-//		System.out.println(chipInfo);
-//		return chipInfo;
 	}
 }
 

@@ -7,7 +7,6 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
-
 	private static final String[] PURCHASE_MENU = {"Feed Money", "Select Product", "Back"};
 	private static final String[] MONEY_MENU = {"$1 Bill", "$2 Bill", "$5 Bill", "Back"};
 	private static final String[] VENDING_MACHINE_ITEMS = { //We need to add inventory stock to each string
@@ -81,6 +80,7 @@ public class VendingMachineCLI {
 		String feedOptions = "";
 		while (!feedOptions.contentEquals("Back"))
 		feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
+		
 	}
 
 	public static void main(String[] args) {
