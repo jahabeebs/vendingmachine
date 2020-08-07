@@ -9,21 +9,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Money {
-	BigDecimal balance = new BigDecimal(0.00).setScale(2);
+	public static BigDecimal balance = new BigDecimal(0.00).setScale(2);
 	private int quarters;
 	private int dimes;
 	private int nickels;
 	private double balanceD;
 	
 	
-	public void feedMoney (int feed) {
-		if (feed == 1) {
+	public static void feedMoney (String feed) {
+		if (feed.equals("$1 Bill")) {
 			balance = balance.add(new BigDecimal (1.00));
 		}
-		else if (feed == 2) {
+		else if (feed.equals("$2 Bill")) {
 			balance = balance.add(new BigDecimal (2.00));
 		}
-		else if (feed == 5) {
+		else if (feed.equals("$5 Bill")) {
 			balance = balance.add(new BigDecimal (5.00));
 		}
 		System.out.println("BALANCE: " + balance);
@@ -54,7 +54,7 @@ public class Money {
 		}
 	}
 	
-	public void buyItem (String itemCode) {
+	public static void buyItem (String itemCode) {
 		//If the item code doesn't match a key to the vendMap, then print CODE INVALID
 		if (!Items.vendMap.containsKey(itemCode)) {
 			System.out.println("CODE INVALID");
