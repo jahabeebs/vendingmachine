@@ -34,6 +34,7 @@ public class Drink extends Items{
 	
 
 	public static String getMessage() {
+		System.out.println("Glug Glug, Yum!");
 		return "Glug Glug, Yum!";
 	}
 	

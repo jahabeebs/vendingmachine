@@ -32,6 +32,7 @@ public class Gum extends Items {
 	static int d4Inventory = new Integer(5);
 	
 	public static String getMessage() {
+		System.out.println("Chew Chew, Yum!");
 		return "Chew Chew, Yum!";
 	}
 	

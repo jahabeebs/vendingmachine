@@ -18,6 +18,12 @@ public class Money {
 	private static BigDecimal pastBalance = balance;
 	
 	
+	public static BigDecimal getBalance() {
+		return Money.balance;
+	}
+	
+	
+	
 	public static void feedMoney (String feed) throws FileNotFoundException {
 	
 	
@@ -77,6 +83,7 @@ public class Money {
 			//If the stock of the item is 0, then say OUT OF STOCK
 			else if (Items.vendMapStock.get(itemCode)==0) {
 				System.out.println("OUT OF STOCK");
+				
 			}
 			//IF balance is GREATER THAN OR EQUAL to price, then
 			else if (balance.compareTo(Items.vendMapPrice.get(itemCode))==1 || (balance.compareTo(Items.vendMapPrice.get(itemCode))==0)) {
@@ -87,13 +94,14 @@ public class Money {
 				Items.vendMapStock.put(itemCode, Items.vendMapStock.get(itemCode)-1);
 				//Updates the log with item name, initial balance, and current balance
 				writeLog(Items.vendMapName.get(itemCode), wasBalance, balance);
-					if (Items.vendMapType.get(itemCode).equals("Chip")) {
+				System.out.println("Enjoy your "+Items.vendMapName.get(itemCode)+"! \n"+"BALANCE: "+balance);	
+				if (itemCode.contains("A")) {
 						Chips.getMessage();
 					}
-					else if (Items.vendMapType.get(itemCode).equals("Candy")) {
+					else if (itemCode.contains("B")) {
 						Candy.getMessage();
 					}
-					else if (Items.vendMapType.get(itemCode).equals("Drink")) {
+					else if (itemCode.contains("C")) {
 						Drink.getMessage();
 					}
 					else {

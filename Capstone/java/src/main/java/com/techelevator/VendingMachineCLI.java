@@ -13,7 +13,7 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
-	private static final String[] PURCHASE_MENU = {"Feed Money", "Select Product", "Back"};
+	private static final String[] PURCHASE_MENU = {"Feed Money", "Select Product","Get Change", "Back"};
 	private static final String[] MONEY_MENU = {"$1 Bill", "$2 Bill", "$5 Bill", "Back"};
 	private static List <String> vendingMachineItemMenu = new ArrayList <String>();
 	private static final String[] BACK_BUTTON = {"Back"};
@@ -37,7 +37,6 @@ public class VendingMachineCLI {
 	}
 
 	private void displayVendingMachineItems() throws FileNotFoundException {
-		String vendingMachineItemMenu = "";
 		File vendItems = new File("vendingmachine.csv");
 		try (Scanner vendReader = new Scanner(vendItems)) {
 			while (vendReader.hasNextLine()) {
@@ -85,6 +84,9 @@ public class VendingMachineCLI {
 //					processPurchaseMenuOptions();
 //				}
 				}
+			else if (purchaseMenuOption.contentEquals("Get Change")) {
+				Money.makeChange(Money.getBalance());
+			}
 		}
 	}
 				
@@ -101,7 +103,7 @@ public class VendingMachineCLI {
 				 */		
 				//Get user input and match it to an item on VENDING_MACHINE_ITEMS
 
-	private void processMoneyFeed() {
+	private void processMoneyFeed() throws FileNotFoundException {
 		String feedOptions = "";
 		while (!feedOptions.contentEquals("Back")) {
 			feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
