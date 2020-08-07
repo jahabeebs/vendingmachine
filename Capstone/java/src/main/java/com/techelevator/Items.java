@@ -18,7 +18,7 @@ public class Items {
 //		this.name = name;
 //		this.price = price;
 //	}
-
+	
 	private static File vendItems = new File("vendingmachine.csv");
 	public static Map<String, String> vendMap = new TreeMap<>();
 
@@ -33,7 +33,7 @@ public class Items {
 				itemsArray = vendLine.split("\\|");
 				vendMap.put(itemsArray[0], vendLine);
 			}
-System.out.println(Chips.a1Inventory);
+System.out.println(Chips.a1Info);
 		}
 	}
 }
