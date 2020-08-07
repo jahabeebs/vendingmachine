@@ -10,10 +10,10 @@ public class VendingMachineCLI {
 	private static final String[] PURCHASE_MENU = {"Feed Money", "Select Product", "Back"};
 	private static final String[] MONEY_MENU = {"$1 Bill", "$2 Bill", "$5 Bill", "Back"};
 	private static final String[] VENDING_MACHINE_ITEMS = { //We need to add inventory stock to each string
-			"A1|Potato Crisps|3.05|Chip",
-			"A2|Stackers|1.45|Chip",
-			"A3|Grain Waves|2.75|Chip",
-			"A4|Cloud Popcorn|3.65|Chip",
+			"A1|Potato Crisps|3.05|Chip", //+ Chips.a1Inventory,
+			"A2|Stackers|1.45|Chip|5 Left", //+ Chips.a2Inventory,
+			"A3|Grain Waves|2.75|Chip|5 Left", //+ Chips.a3Inventory,
+			"A4|Cloud Popcorn|3.65|Chip|5 Left", //+ Chips.a4Inventory,
 			"B1|Moonpie|1.80|Candy",
 			"B2|Cowtales|1.50|Candy",
 			"B3|Wonka Bar|1.50|Candy",
