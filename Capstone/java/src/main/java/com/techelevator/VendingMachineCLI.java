@@ -48,10 +48,8 @@ public class VendingMachineCLI {
 			}
 		}
 		String choice = (String) menu.getChoiceFromOptions(BACK_BUTTON);
-		if (choice.equals(BACK_BUTTON)) {
-			run();
-		}
 	}
+
 
 		
 		
@@ -84,10 +82,16 @@ public class VendingMachineCLI {
 			for (String key : vendMapKeys) {
 				System.out.println(Items.vendMap.get(key) + "|" + Items.vendMapStock.get(key) + " Left");
 			}
+			System.out.println("1) Back");
 			Scanner userInput = new Scanner(System.in);
 			String itemCode = userInput.nextLine();
+			if (itemCode.equals("1")) {
+				processPurchaseMenuOptions();
+			}
+			else {
 			Money.buyItem(itemCode);
 			processProductSelection();
+			}
 	}
 
 	private void processMoneyFeed() throws FileNotFoundException {
