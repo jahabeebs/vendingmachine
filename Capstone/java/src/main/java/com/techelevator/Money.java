@@ -50,7 +50,7 @@ public class Money {
 		nickels = (int) (balanceD/5);
 		balance = balance.multiply(new BigDecimal(0.00));
 		writeLog("GIVE CHANGE", balanceWas, balance);
-		
+		balanceWas = balanceWas.multiply(new BigDecimal(0.00));
 		System.out.println("CHANGE: "+ quarters + " quarters " + dimes + " dimes " + nickels + " nickels.");
 	}
 	

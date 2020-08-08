@@ -41,8 +41,6 @@ public class Items {
 				//System.out.println(vendLine);
 			}
 
-
-
 		}
 	}
 }
