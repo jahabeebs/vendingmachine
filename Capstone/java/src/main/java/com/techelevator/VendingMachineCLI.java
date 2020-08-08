@@ -13,7 +13,7 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
-	private static final String[] PURCHASE_MENU = {"Feed Money", "Select Product", "Back"};
+	private static final String[] PURCHASE_MENU = {"Feed Money", "Select Product","Get Change", "Back"};
 	private static final String[] MONEY_MENU = {"$1 Bill", "$2 Bill", "$5 Bill", "Back"};
 	private static List <String> vendingMachineItemMenu = new ArrayList <String>();
 	private static final String[] BACK_BUTTON = {"Back"};
@@ -37,7 +37,6 @@ public class VendingMachineCLI {
 	}
 
 	private void displayVendingMachineItems() throws FileNotFoundException {
-		String vendingMachineItemMenu = "";
 		File vendItems = new File("vendingmachine.csv");
 		try (Scanner vendReader = new Scanner(vendItems)) {
 			while (vendReader.hasNextLine()) {
@@ -71,13 +70,16 @@ public class VendingMachineCLI {
 			if (purchaseMenuOption.contentEquals("Feed Money")) {
 				processMoneyFeed();
 			}
-			else if (purchaseMenuOption.equals("Select Product"))
+			else if (purchaseMenuOption.equals("Select Product")) {
 				processProductSelection();
 			}
+			else if (purchaseMenuOption.contentEquals("Get Change")) {
+				Money.makeChange(Money.getBalance());
+			}
 		}
+	}
 
-	private void processProductSelection() throws FileNotFoundException {
-		{	
+	private void processProductSelection() throws FileNotFoundException {	
 			Set<String> vendMapKeys = Items.vendMap.keySet();
 			for (String key : vendMapKeys) {
 				System.out.println(Items.vendMap.get(key) + "|" + Items.vendMapStock.get(key) + " Left");
@@ -85,23 +87,8 @@ public class VendingMachineCLI {
 			Scanner userInput = new Scanner(System.in);
 			String itemCode = userInput.nextLine();
 			Money.buyItem(itemCode);
-			System.out.println("Your balance is " + Money.balance);
-		}
+			processProductSelection();
 	}
-
-				
-				
-				
-				//displayVendingMachineItems();
-				//getItem()...should be in Item class?
-				/*	public void getItem()
-				 *  	match product code (not item number) selected to item in vendMap
-				 *  		if doesn't exist return customer to purchase menu
-				 *  	ensure sufficient funds for item
-				 *  	dispense item and print item name, cost, money remaining
-				 *  	print crunch/munch/glug/chew
-				 */		
-				//Get user input and match it to an item on VENDING_MACHINE_ITEMS
 
 	private void processMoneyFeed() throws FileNotFoundException {
 		String feedOptions = "";
@@ -113,11 +100,6 @@ public class VendingMachineCLI {
 			Money.feedMoney(feedOptions);
 		}
 	}
-//		Scanner userInput = new Scanner(System.in);
-//		String money = userInput.nextLine();
-//		Money.feedMoney(money);
-//		userInput.close();
-		
 
 	public static void main(String[] args) throws FileNotFoundException {
 		Menu menu = new Menu(System.in, System.out);

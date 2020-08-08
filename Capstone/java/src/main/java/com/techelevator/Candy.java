@@ -32,6 +32,7 @@ public class Candy extends Items {
 	static int b4Inventory = new Integer(5);
 	
 	public static String getMessage() {
+		System.out.println("Munch Munch, Yum!");
 		return "Munch Munch, Yum!";
 	}
 	
