@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Money {
 
-	static BigDecimal balance = new BigDecimal(0.00).setScale(2);
+	public static BigDecimal balance = new BigDecimal(0.00).setScale(2);
 	private static int quarters;
 	private static int dimes;
 	private static int nickels;
@@ -55,7 +55,6 @@ public class Money {
 	}
 	
 	
-	//01/01/2016 12:00:00 PM FEED MONEY: $5.00 $5.00
 	public static void writeLog (String transaction, BigDecimal was, BigDecimal currentBalance) throws FileNotFoundException {
 		LocalDateTime dateTime = LocalDateTime.now();
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss a");
@@ -115,22 +114,3 @@ public class Money {
 	
 }
 		
-		
-		
-		
-		
-		
-		
-		
-		//This says "While balance is greater than 0.00"
-//		while (balance.compareTo(new BigDecimal (0.00))==1) {
-			//This says "If balance % 25 == 0"
-//			if (balance.remainder(new BigDecimal(0.25)).compareTo(new BigDecimal(0.00))==0) {
-//				quarters = balance.doubleValue()/0.25;
-//				balance = balance.divide(new BigDecimal (0.25));	
-//			}
-			//This says "If balance % 25 > 0"
-//			else if (balance.remainder(new BigDecimal(0.25)).compareTo(new BigDecimal(0.00))==1) {
-				
-		//	}
-		//}

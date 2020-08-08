@@ -9,15 +9,6 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Items {
-	// Are these lines even needed?
-//	private int inventory; 
-//	private String name;
-//	private BigDecimal price;
-//
-//	public Items(String name, BigDecimal price) {
-//		this.name = name;
-//		this.price = price;
-//	}
 	
 	private static File vendItems = new File("vendingmachine.csv");
 	public static Map<String, String> vendMap = new TreeMap<>();
@@ -28,7 +19,6 @@ public class Items {
 	public static String[] itemsArray = new String[4];
 	
 	public static void readFiles() throws FileNotFoundException {
-		//Items t = new Items();
 		try (Scanner vendReader = new Scanner(vendItems)) {
 			while (vendReader.hasNextLine()) {
 				String vendLine = vendReader.nextLine();
@@ -38,21 +28,9 @@ public class Items {
 				vendMapName.put(itemsArray[0], itemsArray[1]);
 				vendMapStock.put(itemsArray[0], 5);
 				vendMapType.put(itemsArray[0], itemsArray[3]);
-				//System.out.println(vendLine);
+
 			}
 
 		}
 	}
 }
-
-
-//System.out.println(Chips.a1Info);
-//
-//		}
-//	}
-//}
-//	}
-//	public String returnKeyValueInfo() {
-//		vendMapInfo = vendMap.get("A1");
-//		return vendMapInfo;
-//	}

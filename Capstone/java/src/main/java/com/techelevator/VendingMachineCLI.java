@@ -51,16 +51,6 @@ public class VendingMachineCLI {
 	}
 
 
-		
-		
-		
-//		String vendingMachineItemMenu = "";
-//		while (!vendingMachineItemMenu.contentEquals("Back")) {
-//			vendingMachineItemMenu = (String) menu.getChoiceFromOptions(VENDING_MACHINE_ITEMS);
-//		}
-//	}
-
-
 	private void processPurchaseMenuOptions() throws FileNotFoundException {
 		String purchaseMenuOption = "";
 		while (!purchaseMenuOption.contentEquals("Back")) {
@@ -98,8 +88,6 @@ public class VendingMachineCLI {
 		String feedOptions = "";
 		while (!feedOptions.contentEquals("Back")) {
 			feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
-			//Scanner userInput = new Scanner(System.in);
-			//String moneyCode = userInput.nextLine();
 			System.out.println(feedOptions);
 			Money.feedMoney(feedOptions);
 		}

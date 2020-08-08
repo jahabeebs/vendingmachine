@@ -1,6 +1,8 @@
-package com.techelevator;
+package com.techelevator.view;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.techelevator.Chips;
 
 public class ChipsTest {
 
