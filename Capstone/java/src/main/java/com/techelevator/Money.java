@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Money {
 
-	static BigDecimal balance = new BigDecimal(0.00).setScale(2);
+	public static BigDecimal balance = new BigDecimal(0.00).setScale(2);
 	private static int quarters;
 	private static int dimes;
 	private static int nickels;

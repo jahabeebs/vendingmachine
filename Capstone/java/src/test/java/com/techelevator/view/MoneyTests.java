@@ -1,4 +1,4 @@
-package com.techelevator;
+package com.techelevator.view;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 
@@ -7,6 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.techelevator.Items;
+import com.techelevator.Money;
 
 public class MoneyTests {
 
