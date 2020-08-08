@@ -48,7 +48,7 @@ public class Money {
 		dimes = (int) (balanceD/10);
 		balanceD = balanceD - (dimes*10);
 		nickels = (int) (balanceD/5);
-		balance = balance.multiply(new BigDecimal(0.00));
+		Money.balance = balance.multiply(new BigDecimal(0.00));
 		writeLog("GIVE CHANGE", balanceWas, balance);
 		balanceWas = balanceWas.multiply(new BigDecimal(0.00));
 		System.out.println("CHANGE: "+ quarters + " quarters " + dimes + " dimes " + nickels + " nickels.");
