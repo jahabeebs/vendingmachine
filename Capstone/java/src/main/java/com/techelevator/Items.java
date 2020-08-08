@@ -41,7 +41,7 @@ public class Items {
 				//System.out.println(vendLine);
 			}
 
-System.out.println(vendMap.get("A1"));
+
 
 		}
 	}
