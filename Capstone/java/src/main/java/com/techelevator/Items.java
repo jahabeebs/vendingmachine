@@ -40,9 +40,6 @@ public class Items {
 				vendMapType.put(itemsArray[0], itemsArray[3]);
 				//System.out.println(vendLine);
 			}
-
-System.out.println(vendMap.get("A1"));
-
 		}
 	}
 }

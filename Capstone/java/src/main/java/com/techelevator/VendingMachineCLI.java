@@ -66,27 +66,29 @@ public class VendingMachineCLI {
 
 	private void processPurchaseMenuOptions() throws FileNotFoundException {
 		String purchaseMenuOption = "";
-		String productSelection = "";
 		while (!purchaseMenuOption.contentEquals("Back")) {
 			purchaseMenuOption = (String) menu.getChoiceFromOptions(PURCHASE_MENU);
 			if (purchaseMenuOption.contentEquals("Feed Money")) {
 				processMoneyFeed();
 			}
-			else if (purchaseMenuOption.equals("Select Product")) {	
-				Set<String> vendMapKeys = Items.vendMap.keySet();
-				for (String key : vendMapKeys) {
-					System.out.println(Items.vendMap.get(key));
-				}
-				Scanner userInput = new Scanner(System.in);
-				String itemCode = userInput.nextLine();
-				Money.buyItem(itemCode);
-				String choice = (String) menu.getChoiceFromOptions(BACK_BUTTON);
-//				if (choice.equals(BACK_BUTTON)) {
-//					processPurchaseMenuOptions();
-//				}
-				}
+			else if (purchaseMenuOption.equals("Select Product"))
+				processProductSelection();
+			}
+		}
+
+	private void processProductSelection() throws FileNotFoundException {
+		{	
+			Set<String> vendMapKeys = Items.vendMap.keySet();
+			for (String key : vendMapKeys) {
+				System.out.println(Items.vendMap.get(key) + "|" + Items.vendMapStock.get(key) + " Left");
+			}
+			Scanner userInput = new Scanner(System.in);
+			String itemCode = userInput.nextLine();
+			Money.buyItem(itemCode);
+			System.out.println("Your balance is " + Money.balance);
 		}
 	}
+
 				
 				
 				
@@ -101,7 +103,7 @@ public class VendingMachineCLI {
 				 */		
 				//Get user input and match it to an item on VENDING_MACHINE_ITEMS
 
-	private void processMoneyFeed() {
+	private void processMoneyFeed() throws FileNotFoundException {
 		String feedOptions = "";
 		while (!feedOptions.contentEquals("Back")) {
 			feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
