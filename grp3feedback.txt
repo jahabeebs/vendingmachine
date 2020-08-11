@@ -1,0 +1,47 @@
+Group 3 Feedback
+
+Good job overall. Your code was well organized and easy to follow.
+
+Only a few comments:
+
+1. There are a few unused imports in your project.
+
+2. Love the Money class, my suggestion is to also have a separate class responsible
+for logging. Right now, the code to do this is in the Money class.
+
+3. Tests could have been a little more robust, let's consider this code:
+
+@Test
+public void makeChangeTest() throws FileNotFoundException {
+	Money.feedMoney("$2 Bill");
+	Money.makeChange(Money.balance);
+	Assert.assertTrue(new BigDecimal(0.00).compareTo(Money.balance)==0);
+}
+
+... and the prod code:
+public static void makeChange(BigDecimal balance) throws FileNotFoundException {
+	BigDecimal balanceWas = balance;
+	balanceD = (balance.doubleValue())*100;
+	quarters = (int) (balanceD/25);
+	balanceD = balanceD - (quarters*25);
+	dimes = (int) (balanceD/10);
+	balanceD = balanceD - (dimes*10);
+	nickels = (int) (balanceD/5);
+	Money.balance = balance.multiply(new BigDecimal(0.00));
+	writeLog("GIVE CHANGE", balanceWas, balance);
+	balanceWas = balanceWas.multiply(new BigDecimal(0.00));
+	System.out.println("CHANGE: "+ quarters + " quarters " + dimes + " dimes " + nickels + " nickels.");
+}
+	
+
+What this looks like is that you feed in $2, then you invoke makeChange(), which will zero out the
+balance via: Money.balance = balance.multiply(new BigDecimal(0.00));
+
+The balance becomes zero because we are multiplying it by zero, not because of the operations related
+to figuring out the number of quarters, dimes, and nickles. 
+
+Thus I think a better way to approach this would have been:
+Make the method makeChange(...) return a String.
+In your tests, feed money, buy something, and then invoke makeChange.
+Assert against the String that you get back "1 quarter, 2 dimes". 
+
